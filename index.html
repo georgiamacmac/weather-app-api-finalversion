@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/cb1170700e.js" crossorigin="anonymous"></script>
+    <title>weatherApp v7💥</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="weather-App shadow-sm p-3 my-5 bg-light rounded" id="weather-App-boundary">
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline" id="find-city">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search"
+                        id="search-bar" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="button-submit">
+                        Search
+                    </button>
+                    <button type="button" class="btn btn-outline-success my-2 my-sm-0 m-3" id="location-button">
+                        Current City
+                    </button>
+                </form>
+                <span class="time" id="current-date">Wednesday, 22:10</span>
+            </nav>
+
+            <h1 id="new-city">Sydney</h1>
+            <div class="row">
+
+                <div class="col-2">
+                    <h2 class="currentTemp">
+                        <span class="temperature" id="current-temp"> 21 </span>
+                        <span class="units"><a href="#" id="temp-celcius">Cº</a> </span>
+                    </h2>
+                </div>
+                <div class="col-2">
+                    <span class="mainIcon" id="currentIcon"> <img src="" alt="" sizes=""></span>
+                    <span class="mainIconAwesome"><i class="fas fa-cloud-sun"></i></span>
+                </div>
+            </div>
+            <h3>
+                <span class="weatherDetails" id="weather-details">Cloudy</span>
+            </h3>
+
+            <div class="row">
+                <div class="col-6"><span class="hourlyDay">
+                        <ul class="list-group list-group-horizontal-sm my-5 mx-3">
+                            <li class="list-group-item"><span id="temp-Am"></span>9AM</li>
+                            <li class="list-group-item">12PM</li>
+                            <li class="list-group-item">3PM</li>
+                            <li class="list-group-item">7PM</li>
+                            <li class="list-group-item">10PM</li>
+                            <li class="list-group-item">12AM</li>
+                            <li class="list-group-item">3AM</li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="col-6">
+                    <h4 class="extraWeather">
+                        <span id="feels-like">Feels like: 21ºC</span>
+                        <span id="precipitation">Precipitation: 0%</span><br />
+                        <span id="humidity">Humidity: 77%</span><br />
+                        <span id="wind-blowing">Wind: 8 km/hr</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-sm mr-2 mx-3" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-outline-primary">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />Tomorrow
+                    </button>
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />
+                        Saturday
+                    </button>
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />
+                        Sunday
+                    </button>
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />
+                        Monday
+                    </button>
+
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />
+                        Tuesday
+                    </button>
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />
+                        Wednesday
+                    </button>
+                    <button type="button" class="btn btn-outline-info">
+                        <i class="fas fa-sun"></i> <br />
+                        25ºC <br />Thursday
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5>
+        <a href="https://github.com/georgiamacmac/weather-app-api-version7" class="gitHub" target="blank">Open-Source
+            Code</a>
+        Coded by Georgia MacMac
+    </h5>
+    </div>
+    </div>
+
+    <script src="src/index.js"></script>
+</body>
+
+</html>
