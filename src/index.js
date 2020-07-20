@@ -1,57 +1,102 @@
-// Current Date
-let now = new Date();
-console.log(now);
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-let day = days[now.getDay()];
-let hour = now.getHours();
-let minutes = now.getMinutes();
-
-let currentDate = document.querySelector("#current-date");
-currentDate.innerHTML = `${day}, ${hour}:${minutes}`;
-
-let currentDateandTime = `${day}, ${hour}:${minutes}`;
-
-if (hour < 10) {
-  let hour = `0${hours}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
 }
+// console.log(now);
+
+function formatHours(timestamp) {
+  let now = new Date(timestamp);
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${hour}:${minutes}`;
+}
+
+//let currentDate = document.querySelector("#current-date");
+//currentDate.innerHTML = `${formatDate}, ${formatHours}`;
+
+// let currentDateandTime = `${day}, ${hour}:${minutes}`;
+
+//let day = days[now.getDay()];
+//let hour = now.getHours();
+//let minutes = now.getMinutes();
+
+//if (hour < 10) {
+// let hour = `0${hours}`;
+//}
 //if (minutes < 10) {
 //let minutes = `0${minutes}`;
 //}
 
 function showTemperature(response) {
   let weatherTemp = document.querySelector("#current-temp");
-  let tempNow = Math.round(response.data.main.temp);
-
-  weatherTemp.innerHTML = `${tempNow}`;
-
   let description = document.querySelector("#weather-details");
-  description.innerHTML = response.data.weather[0].main;
-  //console.log(response);
   let feels = document.querySelector("#feels-like");
+  let humidityElement = document.querySelector("#humidity");
+  let windBlowing = document.querySelector("#wind-blowing");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#current-icon");
+
+  celsiusTemperature = response.data.main.temp;
+
+  weatherTemp.innerHTML = Math.round(response.data.main.temp);
+  description.innerHTML = response.data.weather[0].main;
   feels.innerHTML = `Feels like ${Math.round(
     response.data.main.feels_like
   )} ºC`;
-  let humidity = response.data.main.humidity;
-  let div = document.querySelector(`#humidity`);
-  div.innerHTML = `Humidity: ${humidity} %`;
-  let windBlowing = document.querySelector("#wind-blowing");
+  humidityElement.innerHTML = `Humidity:${response.data.main.humidity} %`;
   windBlowing.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
-  let iconElement = document.querySelector("#current-icon");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+}
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+      <h3>
+        ${formatHours(forecast.dt * 1000)}
+      </h3>
+      <img
+        src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+  }
 }
 
 function searchCity(event) {
