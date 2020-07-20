@@ -79,10 +79,9 @@ function displayForecast(response) {
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
-    <div class="col-2">
-      <h3>
+      <p>
         ${formatHours(forecast.dt * 1000)}
-      </h3>
+      </p>
       <img
         src="http://openweathermap.org/img/wn/${
           forecast.weather[0].icon
@@ -94,7 +93,6 @@ function displayForecast(response) {
         </strong>
         ${Math.round(forecast.main.temp_min)}°
       </div>
-    </div>
   `;
   }
 }
@@ -107,6 +105,9 @@ function searchCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${typeCity.value}&units=metric&appid=${apiKey}`;
   h1.innerHTML = `${typeCity.value}`;
   axios.get(apiUrl).then(showTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${typeCity.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 let searchForm = document.querySelector("#find-city");
