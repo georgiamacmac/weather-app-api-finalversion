@@ -41,14 +41,19 @@ function showTemperature(response) {
   feels.innerHTML = `Feels like ${Math.round(
     response.data.main.feels_like
   )} ºC`;
-
   let humidity = response.data.main.humidity;
   let div = document.querySelector(`#humidity`);
   div.innerHTML = `Humidity: ${humidity} %`;
-
   let windBlowing = document.querySelector("#wind-blowing");
   windBlowing.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
+  let iconElement = document.querySelector("#current-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
 function searchCity(event) {
   event.preventDefault();
   let apiKey = "c54fde1d9add944a5b0b98b1114e48fd";

@@ -25,6 +25,14 @@ h1 {
   margin-left: 115px;
   font-size: 22px;
 }
+.float-left {
+  color: rgb(70, 70, 247);
+  position: relative;
+  display: block;
+  margin-top: -26px;
+  margin-left: 34px;
+  font-size: 22px;
+}
 
 .time {
   display: block;
