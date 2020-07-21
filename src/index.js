@@ -170,4 +170,4 @@ function searchLocation(position) {
 let currentLocationButton = document.querySelector("#location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-search("Boston");
+search("Vancouver");
