@@ -7,7 +7,7 @@ h1 {
   text-align: left;
   margin: 10px 10px;
 }
-.temperature {
+.currentTemp {
   color: rgb(70, 70, 247);
   display: block;
   font-size: 95px;
@@ -25,6 +25,16 @@ h1 {
   margin-left: 115px;
   font-size: 22px;
 }
+
+.currentTemp .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.currentTemp .active:hover {
+  text-decoration: none;
+}
+
 .tempF {
   position: relative;
   display: block;
