@@ -47,6 +47,7 @@ function formatHours(timestamp) {
 
 function showTemperature(response) {
   let weatherTemp = document.querySelector("#current-temp");
+  let cityElement = document.querySelector("#city");
   let description = document.querySelector("#weather-details");
   let feels = document.querySelector("#feels-like");
   let humidityElement = document.querySelector("#humidity");
@@ -57,6 +58,7 @@ function showTemperature(response) {
   celsiusTemperature = response.data.main.temp;
 
   weatherTemp.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
   description.innerHTML = response.data.weather[0].main;
   feels.innerHTML = `Feels like ${Math.round(
     response.data.main.feels_like
@@ -76,9 +78,10 @@ function displayForecast(response) {
   forecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 0; index < 6; index++) {
+  for (let index = 0; index < 12; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
+       <div class="col-2">
       <p>
         ${formatHours(forecast.dt * 1000)}
       </p>
@@ -93,25 +96,38 @@ function displayForecast(response) {
         </strong>
         ${Math.round(forecast.main.temp_min)}°
       </div>
+      </div>
   `;
   }
 }
 
-function searchCity(event) {
-  event.preventDefault();
+function search(city) {
   let apiKey = "c54fde1d9add944a5b0b98b1114e48fd";
-  let typeCity = document.querySelector("#search-bar");
-  let h1 = document.querySelector("#new-city");
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${typeCity.value}&units=metric&appid=${apiKey}`;
-  h1.innerHTML = `${typeCity.value}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemperature);
 
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${typeCity.value}&appid=${apiKey}&units=metric`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
-let searchForm = document.querySelector("#find-city");
-searchForm.addEventListener("submit", searchCity);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+//function searchCity(event) {
+//event.preventDefault();
+//let apiKey = "c54fde1d9add944a5b0b98b1114e48fd";
+//let typeCity = document.querySelector("#search-bar");
+//let h1 = document.querySelector("#new-city");
+//let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${typeCity.value}&units=metric&appid=${apiKey}`;
+//h1.innerHTML = `${typeCity.value}`;
+//axios.get(apiUrl).then(showTemperature);
+//}
+
+//let searchForm = document.querySelector("#find-city");
+//searchForm.addEventListener("submit", searchCity);
 
 function retrieveLocation(position) {
   let lat = position.coords.latitude;
@@ -129,3 +145,5 @@ function showWeatherNow(event) {
 
 let weatherNowButton = document.querySelector("#location-button");
 weatherNowButton.addEventListener("click", showWeatherNow);
+
+search("Toronto");
