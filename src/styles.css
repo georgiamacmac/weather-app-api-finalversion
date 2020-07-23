@@ -16,7 +16,8 @@ h1 {
 
 .units {
   color: rgb(70, 70, 247);
-  vertical-align: text-bottom;
+  vertical-align: top;
+  line-height: 60px;
   font-size: 22px;
 }
 
