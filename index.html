@@ -50,18 +50,17 @@
         <h1 id="city">Sydney</h1>
 
         <div class="row">
-          <div class="col-2">
-            <div class="clearfix">
-              <span class="currentTemp" id="current-temp"
-                ><strong> </strong
-              ></span>
-              <div class="col-2 float-left units">
-                <a href="#" id="celsius-link" class="active">Cº</a>
-              </div>
-            </div>
+          <div class="col-8 col-md-4">
+            <span class="currentTemp" id="current-temp"
+              ><strong> </strong
+            ></span>
+            <span class="units">
+              <a href="#" id="celsius-link" class="active">Cº</a>|
+              <a href="#" id="fahrenheit-link" class="tempF">ºF</a>
+            </span>
           </div>
 
-          <div class="col-2">
+          <div class="col-4 col-md-3">
             <span class="mainIconAwesome"
               ><img
                 src="http://openweathermap.org/img/wn/10d@2x.png"
@@ -69,19 +68,17 @@
                 id="current-icon"
                 class="float-left"
             /></span>
+            <h3>
+              <span class="weatherDetails" id="weather-details"></span>
+            </h3>
           </div>
-          <div class="col-6">
-            <h4 class="extraWeather">
-              <span id="feels-like">Feels like: 21ºC</span>
-              <span id="precipitation">Precipitation: 0%</span><br />
-              <span id="humidity">Humidity: 77%</span><br />
-              <span id="wind-blowing">Wind: 8 km/hr</span>
-            </h4>
+          <div class="col-12 col-md-5 extra-weather-info">
+            <h4 class="extraWeather" id="feels-like">Feels like: 21ºC</h4>
+            <h4 class="extraWeather" id="precipitation">Precipitation: 0%</h4>
+            <h4 class="extraWeather" id="humidity">Humidity: 77%</h4>
+            <h4 class="extraWeather" id="wind-blowing">Wind: 8 km/hr</h4>
           </div>
         </div>
-        <h3>
-          <span class="weatherDetails" id="weather-details">Cloudy</span>
-        </h3>
 
         <div class="row weather-forecast" id="forecast"></div>
       </div>
